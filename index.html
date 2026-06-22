@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="윤홍주의 ISP, 브랜딩, UI/UX, 콘텐츠 디자인 포트폴리오">
+  <title>HONGJU — Visual Communication Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#111317; --paper:#fff; --muted:#71747a; --line:#dedfe1; --accent:#e5255f; --sidebar:320px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:12px/1.55 Inter, Arial, sans-serif; }
+    a { color:inherit; }
+    aside { position:fixed; inset:0 auto 0 0; z-index:10; width:var(--sidebar); padding:31px 25px 34px; overflow:auto; background:#fff; border-right:1px solid var(--line); }
+    .name { margin:0 0 4px; font-size:31px; font-weight:600; letter-spacing:-1.7px; line-height:1; }
+    .roles { margin:0; color:var(--accent); font:italic 16px/1.32 'EB Garamond', serif; }
+    .rule { margin:16px 0; border:0; border-top:1px solid var(--line); }
+    .marquee { overflow:hidden; color:var(--accent); white-space:nowrap; font-size:10px; letter-spacing:.045em; }
+    .marquee span { display:inline-block; padding-left:100%; animation:marquee 19s linear infinite; }
+    @keyframes marquee { to { transform:translateX(-100%); } }
+    .statement { margin:0; color:#34373c; font-size:11px; line-height:1.7; }
+    .statement strong { color:var(--ink); font-weight:500; }
+    nav h2, .cv summary { margin:18px 0 7px; color:var(--muted); font-size:10px; font-weight:500; letter-spacing:.09em; text-transform:uppercase; }
+    .project-list { margin:0; padding:0; list-style:none; }
+    .project-list a { display:block; padding:3px 0; color:#373a3f; font-size:11px; text-decoration:none; transition:color .16s, transform .16s; }
+    .project-list a::before { content:'↗'; margin-right:6px; color:var(--accent); }
+    .project-list a:hover, .project-list a.active { color:var(--accent); transform:translateX(3px); }
+    .cv { border-top:1px solid var(--line); padding-top:1px; }
+    .cv summary { display:flex; justify-content:space-between; align-items:center; cursor:pointer; list-style:none; }
+    .cv summary::-webkit-details-marker { display:none; }.cv summary::after { content:'+'; color:var(--accent); font-size:14px; }.cv[open] summary::after { content:'−'; }
+    .cv ul { margin:0 0 13px; padding:0; list-style:none; color:#45484d; font-size:10px; line-height:1.6; }.cv li + li { margin-top:5px; }.cv b { color:var(--ink); font-weight:500; }.skill-list { display:flex; flex-wrap:wrap; gap:4px 10px; }
+    .contact { margin-top:22px; color:var(--muted); font-size:10px; line-height:1.7; }.contact a { text-decoration:none; }.contact a:hover { color:var(--accent); }
+    main { margin-left:var(--sidebar); }.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .project { position:relative; display:block; aspect-ratio:1.21/1; overflow:hidden; background:#eee; color:#fff; text-decoration:none; cursor:pointer; }.project img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .55s cubic-bezier(.2,.7,.2,1); }.project:hover img, .project:focus img { transform:scale(1.04); }
+    .caption { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:20px; background:linear-gradient(transparent 42%,rgba(0,0,0,.73)); opacity:0; transition:opacity .22s; }.project:hover .caption, .project:focus .caption { opacity:1; }.caption strong { font-size:13px; font-weight:500; line-height:1.35; }.caption span { margin-top:3px; color:#dedede; font-size:10px; }
+    dialog { width:min(1060px,calc(100vw - 34px)); max-height:calc(100vh - 34px); margin:auto; padding:0; border:0; background:#fff; box-shadow:0 24px 90px rgba(0,0,0,.31); overflow:auto; } dialog::backdrop { background:rgba(0,0,0,.72); backdrop-filter:blur(5px); }
+    .close { position:sticky; top:15px; float:right; z-index:2; display:grid; place-items:center; width:38px; height:38px; margin:15px; border:1px solid var(--line); border-radius:50%; background:#fff; cursor:pointer; font-size:19px; }.close:hover { border-color:var(--accent); color:var(--accent); }
+    .detail { clear:both; padding:7px 7.5% 62px; }.eyebrow { color:var(--accent); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }.detail h2 { max-width:760px; margin:9px 0 30px; font-size:clamp(31px,4.5vw,58px); font-weight:500; line-height:1.03; letter-spacing:-.055em; }
+    .project-note { display:grid; grid-template-columns:155px 1fr; gap:22px; padding:19px 0 32px; border-top:1px solid var(--line); }.project-note label { color:var(--muted); font-size:10px; letter-spacing:.08em; text-transform:uppercase; }.project-note p { max-width:610px; margin:0; font-size:14px; line-height:1.75; white-space:pre-line; }
+    .facts { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:0 0 35px; padding:16px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }.facts div { color:var(--muted); font-size:10px; }.facts dt { margin-bottom:4px; color:var(--accent); font-size:9px; letter-spacing:.07em; text-transform:uppercase; }.facts dd { margin:0; color:var(--ink); line-height:1.6; }
+    .gallery { display:grid; gap:16px; }.gallery figure { margin:0; }.gallery img { width:100%; display:block; background:#eee; }.gallery figcaption { margin-top:6px; color:var(--muted); font-size:10px; }
+    @media (max-width:840px) { :root { --sidebar:100%; } aside { position:relative; padding:25px 20px 28px; border-right:0; border-bottom:1px solid var(--line); }.project-list { columns:2; column-gap:24px; }.project-list h2, .project-list li { break-inside:avoid; } main { margin-left:0; }.grid { grid-template-columns:1fr; }.detail { padding:6px 22px 40px; }.project-note { grid-template-columns:1fr; gap:7px; }.facts { grid-template-columns:1fr; gap:13px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.marquee span { animation:none; padding-left:0; }.project img { transition:none; } }
+  </style>
+</head>
+<body>
+  <aside>
+    <h1 class="name">HONGJU</h1>
+    <p class="roles">Visual Communication Designer</p>
+    <hr class="rule">
+    <div class="marquee"><span>ISP · BRANDING · UI/UX · CONTENTS &nbsp;&nbsp; PURPOSE INTO EXPERIENCE &nbsp;&nbsp; ISP · BRANDING · UI/UX · CONTENTS &nbsp;&nbsp; PURPOSE INTO EXPERIENCE &nbsp;&nbsp;</span></div>
+    <hr class="rule">
+    <p class="statement"><strong>목적을 경험으로 구현하는 디자이너, 윤홍주입니다.</strong><br>디자인의 목적과 사용자 관점을 기반으로 브랜드 메시지가 효과적으로 전달되는 경험을 만듭니다.</p>
+    <nav aria-label="프로젝트 목록">
+      <h2>Selected Works</h2>
+      <ul class="project-list">
+        <li><a href="#starfield" data-project="starfield">STARFIELD ISP / SUWON GRAND OPEN</a></li>
+        <li><a href="#gift-guide" data-project="gift-guide">SHINSEGAE GIFT GUIDE BOOK</a></li>
+        <li><a href="#salon" data-project="salon">SHINSEGAE SALON</a></li>
+        <li><a href="#eyev" data-project="eyev">EYEV</a></li>
+      </ul>
+    </nav>
+    <details class="cv"><summary>Experience</summary><ul><li><b>알엠에스퍼블리케이션즈</b><br>2023.06 — 현재 · ISP 리테일 디자인, 그래픽 디자인, UX/UI, 편집</li><li><b>성남시 골목상권 활성화 지원사업</b><br>2022.03 — 2022.12 · 수내역 상권 거리 브랜딩 기획</li><li><b>아이랩미디어</b><br>2022.01 — 2022.02 · 디지털미디어 전시운영 인턴</li><li><b>경기대학교 복지관</b><br>2021.03 — 2021.11 · High-end Hall 기획·디자인</li></ul></details>
+    <details class="cv"><summary>Awards</summary><ul><li>IBDA 부산국제디자인어워드 · IDEA 수상 (2023)</li><li>ASIA DESIGN PRIZE · Winner 수상 (2023)</li><li>대한민국 패키지디자인대전 · 금상 수상 (2022)</li></ul></details>
+    <details class="cv"><summary>Education &amp; Tools</summary><ul><li>경기대학교 시각정보디자인학과 졸업<br>2016.03 — 2023.02</li><li class="skill-list">Photoshop · Illustrator · InDesign · Figma · XD · After Effects · Premiere Pro · Framer</li></ul></details>
+    <p class="contact"><a href="tel:+821087536203">+82 10-8753-6203</a><br><a href="mailto:h5ngju@naver.com">h5ngju@naver.com</a><br>Seoul, Korea</p>
+  </aside>
+  <main>
+    <section class="grid" aria-label="선정 프로젝트">
+      <a class="project" href="#starfield" data-project="starfield"><img src="images/starfield-cover.jpg" alt="스타필드 수원 윈터 그래픽이 설치된 공간"><span class="caption"><strong>STARFIELD ISP / SUWON GRAND OPEN</strong><span>ISP · Graphic Design · 2023–2026</span></span></a>
+      <a class="project" href="#gift-guide" data-project="gift-guide"><img src="images/shinsegae-gift-cover.jpg" alt="신세계 기프트 가이드 북"><span class="caption"><strong>SHINSEGAE GIFT GUIDE BOOK</strong><span>Book Design · Photo · 2023–2024</span></span></a>
+      <a class="project" href="#salon" data-project="salon"><img src="images/shinsegae-salon-cover.jpg" alt="신세계 살롱 모바일 서비스 화면"><span class="caption"><strong>SHINSEGAE SALON</strong><span>UI/UX · Mobile Service · 2024</span></span></a>
+      <a class="project" href="#eyev" data-project="eyev"><img src="images/eyev-cover.jpg" alt="EYEV 아이케어 제품 패키지"><span class="caption"><strong>EYEV</strong><span>Branding · Packaging · 2023</span></span></a>
+    </section>
+  </main>
+  <dialog id="project-dialog" aria-labelledby="detail-title">
+    <button class="close" type="button" aria-label="상세 프로젝트 닫기">×</button>
+    <article class="detail"><p class="eyebrow" id="detail-category"></p><h2 id="detail-title"></h2><section class="project-note"><label>Project Brief</label><p id="detail-brief"></p></section><dl class="facts" id="detail-facts"></dl><section class="gallery" id="detail-gallery"></section></article>
+  </dialog>
+  <script>
+    const projects = {
+      starfield: { title:'STARFIELD ISP / SUWON GRAND OPEN', category:'ISP / Graphic Design', year:'2023–2026', contribution:'Team Project · 70%', role:'ISP, 기획, 그래픽디자인, 영상 콘텐츠', brief:'스타필드의 시즌별 그래픽을 제작하며 ISP 디자인을 구축했습니다. 수원점 오픈을 위한 고지물 가이드라인과 별마당도서관, 펫파크 등 주요 공간의 사인 그래픽을 설계했습니다.', images:[['images/starfield-cover.jpg','스타필드 수원 윈터 시즌 그래픽'],['images/starfield-season.jpg','AI 기술을 활용한 2025 겨울 시즌 그래픽'],['images/starfield-guideline.jpg','점포 운영을 위한 그래픽 가이드라인'],['images/starfield-library.jpg','별마당도서관 공간 브랜딩 가이드']] },
+      'gift-guide': { title:'SHINSEGAE GIFT GUIDE BOOK', category:'Book Design / Photo', year:'2023–2024', contribution:'Team Project · 70%', role:'기획, 촬영감리, 편집, 서식류 제작', brief:'신세계백화점 명절 카탈로그 제작에 참여해 브랜드의 전통성과 고급스러운 이미지를 전달하는 데 집중했습니다. 타이포그래피와 레이아웃의 일관성을 유지하고, 촬영 콘셉트와 연출을 조율해 상품의 신선함과 정성을 시각적으로 구현했습니다.', images:[['images/shinsegae-gift-cover.jpg','신세계 기프트 가이드 북 표지와 내지'],['images/shinsegae-gift-catalog.jpg','2024년 설 카탈로그 그래픽 아이덴티티'],['images/shinsegae-gift-photo.jpg','정성과 신선함을 담은 도비라 촬영']] },
+      salon: { title:'SHINSEGAE SALON', category:'UI/UX / Mobile Service', year:'2024', contribution:'Team Project · 90%', role:'UX/UI, Graphic Design', brief:'신세계백화점 VIP 고객을 위한 아카데미 모바일 서비스를 기획하고 UX/UI를 설계했습니다. 주요 타겟의 연령대를 고려해 가독성과 접근성을 우선하고, 정보 탐색부터 신청까지의 흐름을 직관적으로 단순화했습니다.', images:[['images/shinsegae-salon-cover.jpg','신세계 살롱 모바일 서비스 메인 그래픽'],['images/shinsegae-salon-research.jpg','VIP 사용자 리서치와 서비스 설계 방향'],['images/shinsegae-salon-graphic.jpg','성장의 공간을 표현한 오프닝 그래픽'],['images/shinsegae-salon-ui.jpg','직관적 탐색 구조와 상세 화면 UI']] },
+      eyev: { title:'EYEV', category:'Branding / Packaging', year:'2023', contribution:'Team Project · 70%', role:'기획, 패키지, 그래픽 시스템, 서식류, 판넬, 굿즈 제작 및 촬영', brief:'사용자의 시각 건강 상태를 기반으로 맞춤 정보를 제공하는 아이케어 서비스 EYEV의 브랜드 경험을 설계했습니다. ‘시각 경험의 확장’이라는 콘셉트 아래, 직관성과 가독성을 중심으로 브랜드 아이덴티티와 온라인 서비스 흐름을 함께 구성했습니다.', images:[['images/eyev-cover.jpg','EYEV 아이케어 서비스의 패키지 디자인'],['images/eyev-brand-system.jpg','EYEV 로고타입과 그래픽·컬러 시스템'],['images/eyev-service.jpg','사용자 상태 분석과 맞춤 정보를 제공하는 온라인 서비스']] }
+    };
+    const dialog=document.querySelector('#project-dialog'); const closeButton=document.querySelector('.close');
+    function openProject(key) { const project=projects[key]; if (!project) return; document.title=project.title+' — HONGJU'; document.querySelector('#detail-category').textContent=project.category; document.querySelector('#detail-title').textContent=project.title; document.querySelector('#detail-brief').textContent=project.brief; document.querySelector('#detail-facts').innerHTML=`<div><dt>Year</dt><dd>${project.year}</dd></div><div><dt>Contribution</dt><dd>${project.contribution}</dd></div><div><dt>Role</dt><dd>${project.role}</dd></div>`; document.querySelector('#detail-gallery').innerHTML=project.images.map(([src,alt])=>`<figure><img src="${src}" alt="${alt}"><figcaption>${alt}</figcaption></figure>`).join(''); document.querySelectorAll('[data-project]').forEach(el=>el.classList.toggle('active',el.dataset.project===key)); if (!dialog.open) dialog.showModal(); }
+    document.querySelectorAll('[data-project]').forEach(el=>el.addEventListener('click',event=>{ event.preventDefault(); const key=el.dataset.project; history.replaceState(null,'','#'+key); openProject(key); }));
+    function closeProject() { dialog.close(); history.replaceState(null,'',location.pathname); document.querySelectorAll('.project-list a').forEach(el=>el.classList.remove('active')); document.title='HONGJU — Visual Communication Designer'; }
+    closeButton.addEventListener('click',closeProject); dialog.addEventListener('click',event=>{ if(event.target===dialog) closeProject(); }); window.addEventListener('hashchange',()=>openProject(location.hash.slice(1))); if(location.hash) openProject(location.hash.slice(1));
+  </script>
+</body>
+</html>
