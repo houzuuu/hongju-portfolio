@@ -12,13 +12,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
   <style>
-    :root { --bg:#fbfaf8; --panel:#fff; --ink:#161311; --muted:#7d766f; --line:#ded5ca; --accent:#ff3569; --sidebar:326px; }
+    :root { --bg:#fbfaf8; --panel:#fff; --ink:#161311; --muted:#7d766f; --line:#ded5ca; --accent:#161311; --sidebar:326px; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { margin:0; min-height:100vh; color:var(--ink); background:var(--bg); font:13px/1.55 Inter, Arial, sans-serif; color-scheme:light; }
     html, body, aside, main, .home-view, .detail-view, .sidebar-menu, .works { -ms-overflow-style:none; scrollbar-width:none; }
     html::-webkit-scrollbar, body::-webkit-scrollbar, aside::-webkit-scrollbar, main::-webkit-scrollbar, .home-view::-webkit-scrollbar, .detail-view::-webkit-scrollbar, .sidebar-menu::-webkit-scrollbar, .works::-webkit-scrollbar { width:0; height:0; display:none; }
-    a { color:inherit; }
+    a { color:inherit; text-decoration:none; }
     button { font:inherit; }
     aside { position:fixed; inset:0 auto 0 0; z-index:10; width:var(--sidebar); padding:31px 25px 36px; overflow-y:auto; -ms-overflow-style:none; scrollbar-width:none; background:var(--panel); border-right:1px solid var(--line); }
     aside::-webkit-scrollbar, .works::-webkit-scrollbar, .sidebar-menu::-webkit-scrollbar { width:0; height:0; display:none; }
@@ -30,59 +30,62 @@
     .rule { margin:22px 0; border:0; border-top:1px solid var(--line); }
     .intro { margin:0; color:#cfced0; font-size:12px; line-height:1.78; }.intro strong { color:var(--ink); font-weight:500; }
     .section-title { margin:27px 0 9px; color:var(--muted); font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; }
-    .works { border-top:1px solid var(--line); border-bottom:1px solid var(--line); }.year { border-bottom:1px solid var(--line); }.year:last-child { border-bottom:0; }.year summary { display:flex; align-items:center; justify-content:space-between; min-height:38px; cursor:pointer; color:var(--ink); font-size:12px; font-weight:500; list-style:none; }.year summary::-webkit-details-marker { display:none; }.year summary::before { content:'+'; margin-right:8px; color:var(--accent); font-size:17px; font-weight:400; }.year[open] summary::before { content:'−'; }.year summary span { margin-right:auto; }.year summary b { color:var(--muted); font-size:10px; font-weight:400; }.work-list { margin:0 0 11px; padding:0; list-style:none; }.work-list a { display:block; padding:4px 0 4px 20px; color:#b9b9be; font-size:11px; line-height:1.35; text-decoration:none; transition:color .18s,transform .18s; }.work-list a:hover, .work-list a.active { color:var(--accent); transform:translateX(3px); }.work-list a::before { content:'↗'; position:absolute; margin-left:-16px; color:var(--accent); }
+    .works { border-top:1px solid var(--line); border-bottom:1px solid var(--line); }.year { border-bottom:1px solid var(--line); }.year:last-child { border-bottom:0; }.year-heading { display:flex; align-items:center; justify-content:space-between; min-height:38px; color:var(--ink); font-size:12px; font-weight:500; }.year-heading span { margin-right:auto; }.year-heading b { color:var(--muted); font-size:10px; font-weight:400; }.work-list { margin:0 0 11px; padding:0; list-style:none; }.work-list a { display:block; padding:4px 0; color:#b9b9be; font-size:11px; line-height:1.35; text-decoration:none; transition:none; }.work-list a:hover, .work-list a.active { color:var(--ink); transform:none; }.work-list a::before { content:none; }
     .cv { border-bottom:1px solid var(--line); }.cv summary { display:flex; align-items:center; justify-content:space-between; min-height:50px; color:var(--muted); cursor:pointer; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; list-style:none; }.cv summary::-webkit-details-marker { display:none; }.cv summary::after { content:'+'; color:var(--accent); font-size:18px; font-weight:400; }.cv[open] summary::after { content:'−'; }.cv ul { margin:0 0 16px; padding:0; list-style:none; color:#b7b7bd; font-size:11px; line-height:1.65; }.cv li + li { margin-top:7px; }.cv b { color:var(--ink); font-weight:500; }.tools { color:#b7b7bd; }.contact { margin:24px 0 0; color:var(--muted); font-size:11px; line-height:1.8; }.contact a { text-decoration:none; }.contact a:hover { color:var(--accent); }
-    main { margin-left:var(--sidebar); min-height:100vh; }.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:8px; }.project-card { position:relative; display:block; aspect-ratio:1.21/1; overflow:hidden; background:#171719; color:var(--ink); text-decoration:none; cursor:pointer; }.project-card img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .4s; }.project-card:hover img, .project-card:focus img { transform:scale(1.045); filter:brightness(.72); }.project-number { position:absolute; top:18px; left:19px; z-index:2; color:#fff; font-size:12px; font-weight:500; letter-spacing:.08em; opacity:0; transform:translateY(-4px); transition:opacity .22s,transform .22s; text-shadow:0 1px 10px #000; }.project-card:hover .project-number, .project-card:focus .project-number { opacity:1; transform:translateY(0); }.card-caption { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:23px; background:linear-gradient(180deg,rgba(0,0,0,.06) 25%,rgba(0,0,0,.83)); opacity:0; transition:opacity .25s; }.project-card:hover .card-caption, .project-card:focus .card-caption { opacity:1; }.card-caption strong { max-width:90%; font-size:20px; font-weight:500; line-height:1.22; letter-spacing:-.035em; }.card-caption span { margin-top:7px; color:#d3d3d6; font-size:12px; }
-    .placeholder { position:relative; width:100%; height:100%; overflow:hidden; background:linear-gradient(125deg,#15151b 5%,var(--tone) 49%,#0b0b0c 50%); }.placeholder::before { content:''; position:absolute; width:58%; aspect-ratio:1; top:18%; left:19%; border:1px solid color-mix(in srgb,var(--tone) 80%,#fff); border-radius:50%; box-shadow:30px 35px 0 -1px rgba(255,255,255,.12); }.placeholder::after { content:attr(data-mark); position:absolute; right:4%; bottom:2%; color:rgba(255,255,255,.78); font-size:clamp(36px,7vw,86px); font-weight:600; letter-spacing:-.1em; line-height:.9; }.placeholder.variant-1 { background:linear-gradient(150deg,#16161a 0 28%,var(--tone) 29% 61%,#e9e6df 62%); }.placeholder.variant-1::before { border-radius:0; transform:rotate(45deg); }.placeholder.variant-2 { background:radial-gradient(circle at 65% 27%,var(--tone) 0 14%,transparent 14.2%),#151518; }.placeholder.variant-2::before { top:20%; left:12%; width:72%; border-radius:0; }.placeholder.variant-3 { background:linear-gradient(90deg,var(--tone) 0 13%,#17171a 13% 87%,var(--tone) 87%); }.placeholder.variant-3::before { border-width:8px; border-color:rgba(255,255,255,.13); }.project-card:hover .placeholder { filter:brightness(.7); transform:scale(1.045); transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .4s; }
+    main { margin-left:var(--sidebar); min-height:100vh; }.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:8px; }.project-card { position:relative; display:block; aspect-ratio:1.21/1; overflow:hidden; background:#171719; color:var(--ink); text-decoration:none; cursor:pointer; }.project-card img { width:100%; height:100%; object-fit:cover; display:block; transition:none; }.project-card:hover img, .project-card:focus img { transform:none; filter:brightness(.88); }.project-number { position:absolute; top:18px; left:19px; z-index:2; color:#fff; font-size:12px; font-weight:500; letter-spacing:.08em; opacity:0; transform:none; transition:none; text-shadow:0 1px 10px #000; }.project-card:hover .project-number, .project-card:focus .project-number { opacity:1; transform:none; }.card-caption { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:23px; background:linear-gradient(180deg,rgba(0,0,0,.02) 25%,rgba(0,0,0,.54)); opacity:0; transition:none; }.project-card:hover .card-caption, .project-card:focus .card-caption { opacity:1; }.card-caption strong { max-width:90%; font-size:20px; font-weight:500; line-height:1.22; letter-spacing:-.035em; }.card-caption span { margin-top:7px; color:#d3d3d6; font-size:12px; }
+    .placeholder { position:relative; width:100%; height:100%; overflow:hidden; background:linear-gradient(125deg,#15151b 5%,var(--tone) 49%,#0b0b0c 50%); }.placeholder::before { content:''; position:absolute; width:58%; aspect-ratio:1; top:18%; left:19%; border:1px solid color-mix(in srgb,var(--tone) 80%,#fff); border-radius:50%; box-shadow:30px 35px 0 -1px rgba(255,255,255,.12); }.placeholder::after { content:attr(data-mark); position:absolute; right:4%; bottom:2%; color:rgba(255,255,255,.78); font-size:clamp(36px,7vw,86px); font-weight:600; letter-spacing:-.1em; line-height:.9; }.placeholder.variant-1 { background:linear-gradient(150deg,#16161a 0 28%,var(--tone) 29% 61%,#e9e6df 62%); }.placeholder.variant-1::before { border-radius:0; transform:rotate(45deg); }.placeholder.variant-2 { background:radial-gradient(circle at 65% 27%,var(--tone) 0 14%,transparent 14.2%),#151518; }.placeholder.variant-2::before { top:20%; left:12%; width:72%; border-radius:0; }.placeholder.variant-3 { background:linear-gradient(90deg,var(--tone) 0 13%,#17171a 13% 87%,var(--tone) 87%); }.placeholder.variant-3::before { border-width:8px; border-color:rgba(255,255,255,.13); }.project-card:hover .placeholder { filter:brightness(.88); transform:none; transition:none; }
     .detail-view { min-height:100vh; padding:30px clamp(24px,3.6vw,58px) 80px; background:var(--bg); }.detail-view[hidden], .home-view[hidden] { display:none; }.back { display:inline-flex; align-items:center; margin:0 0 84px; padding:0; border:0; background:none; color:var(--muted); cursor:pointer; font-size:11px; font-weight:500; letter-spacing:.09em; text-transform:uppercase; }.back:hover { color:var(--accent); }.back::before { content:none; }.detail-gallery { display:grid; gap:18px; }.detail-gallery figure { margin:0; }.detail-gallery img { width:100%; display:block; }.detail-gallery figcaption { margin-top:8px; color:var(--muted); font-size:11px; }.detail-gallery .detail-placeholder { min-height:460px; aspect-ratio:1.4/1; }.next-project { display:flex; justify-content:flex-start; align-items:center; margin-top:80px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; }.next-project .back { margin:0; color:var(--ink); font-size:16px; text-decoration:none; }.next-project .back:hover { color:var(--accent); }
-    @media (max-width:860px) { :root { --sidebar:100%; } aside { position:relative; height:auto; min-height:0; padding:22px 20px 0; overflow:visible; border-right:0; border-bottom:1px solid var(--line); }.brand { font-size:35px; }.profession { font-size:11px; }.menu-toggle { position:absolute; top:26px; right:20px; display:grid; width:34px; height:28px; padding:4px 0; border:0; background:none; cursor:pointer; }.menu-toggle span { display:block; width:100%; height:1px; background:var(--ink); transition:transform .24s,opacity .24s; }.menu-toggle[aria-expanded="true"] span:first-child { transform:translateY(8px) rotate(45deg); }.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }.menu-toggle[aria-expanded="true"] span:last-child { transform:translateY(-8px) rotate(-45deg); }.sidebar-menu { max-height:0; margin-top:0; overflow:hidden; opacity:0; visibility:hidden; transition:max-height .45s ease,opacity .25s ease,margin-top .25s ease,visibility .25s; }.menu-open .sidebar-menu { max-height:2200px; margin-top:20px; padding-bottom:30px; opacity:1; visibility:visible; }.discipline { margin:0 0 21px; font-size:12px; }.rule:first-of-type { display:none; }.works { max-height:none; overflow:visible; -ms-overflow-style:none; scrollbar-width:none; }.year summary { min-height:54px; font-size:15px; }.year summary b { font-size:11px; }.work-list a { padding-top:6px; padding-bottom:6px; font-size:12px; }.cv summary { min-height:63px; font-size:12px; }.contact { margin-top:28px; font-size:12px; } main { margin-left:0; }.grid { grid-template-columns:1fr; } }
+    @media (max-width:860px) { :root { --sidebar:100%; } aside { position:relative; height:auto; min-height:0; padding:22px 20px 0; overflow:visible; border-right:0; border-bottom:1px solid var(--line); }.brand { font-size:35px; }.profession { font-size:11px; }.menu-toggle { position:absolute; top:26px; right:20px; display:grid; width:34px; height:28px; padding:4px 0; border:0; background:none; cursor:pointer; }.menu-toggle span { display:block; width:100%; height:1px; background:var(--ink); transition:transform .24s,opacity .24s; }.menu-toggle[aria-expanded="true"] span:first-child { transform:translateY(8px) rotate(45deg); }.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }.menu-toggle[aria-expanded="true"] span:last-child { transform:translateY(-8px) rotate(-45deg); }.sidebar-menu { max-height:0; margin-top:0; overflow:hidden; opacity:0; visibility:hidden; transition:max-height .45s ease,opacity .25s ease,margin-top .25s ease,visibility .25s; }.menu-open .sidebar-menu { max-height:2200px; margin-top:20px; padding-bottom:30px; opacity:1; visibility:visible; }.discipline { margin:0 0 21px; font-size:12px; }.rule:first-of-type { display:none; }.works { max-height:none; overflow:visible; -ms-overflow-style:none; scrollbar-width:none; }.year-heading { min-height:54px; font-size:15px; }.year-heading b { font-size:11px; }.work-list a { padding-top:6px; padding-bottom:6px; font-size:12px; }.cv summary { min-height:63px; font-size:12px; }.contact { margin-top:28px; font-size:12px; } main { margin-left:0; }.grid { grid-template-columns:1fr; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.marquee span { animation:none; }.project-card img,.project-card:hover .placeholder { transition:none; transform:none; } }
     /* Current portfolio type refinements */
     :root { --sidebar:370px; --detail-content:1440px; }
     aside { padding:35px 30px 42px; }
-    .brand { font:700 27px/.9 Optima, 'Optima-Bold', 'Optima LT Std', serif; letter-spacing:.015em; text-transform:uppercase; }
-    .profession { margin-top:13px; font-size:13px; letter-spacing:.035em; }
-    .discipline { margin-top:2px; font-size:13px; letter-spacing:.055em; }
+    .brand { font:700 31px/.9 Optima, 'Optima-Bold', 'Optima LT Std', serif; letter-spacing:.015em; text-transform:uppercase; }
+    .profession { margin-top:13px; font-size:14px; letter-spacing:.035em; }
+    .discipline { margin-top:2px; font-size:14px; letter-spacing:.055em; }
     .rule { margin:26px 0; }
-    .intro-kicker { margin:0 0 9px; color:var(--ink); font-size:16px; font-weight:500; letter-spacing:0; }
-    .intro { font-size:14px; line-height:1.75; }
+    .intro-kicker { margin:0 0 9px; color:var(--ink); font-size:17px; font-weight:500; letter-spacing:0; }
+    .intro { font-size:15px; line-height:1.75; }
     .intro strong { font-weight:600; }
-    .section-title { margin-top:31px; font-size:12px; }
-    .section-tabs { display:flex; align-items:center; gap:18px; margin:22px 0 25px; padding:0 0 14px; border-bottom:0; }
-    .section-tab { position:relative; display:inline-flex; align-items:center; min-height:0; padding:0 0 4px; border:0; background:none; color:var(--muted); cursor:pointer; text-align:left; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; transition:color .18s,opacity .18s; }
-    .section-tab::after { content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--accent); opacity:0; transform:scaleX(.18); transform-origin:left; transition:opacity .2s,transform .2s; }
-    .section-tab.active { color:var(--accent); }
-    .section-tab.active::after { opacity:1; transform:scaleX(1); }
+    .section-title { margin-top:31px; font-size:13px; }
+    .section-tabs { display:flex; align-items:center; gap:16px; margin:24px 0 30px; padding:0; border-bottom:0; }
+    .section-tab { position:relative; display:inline-flex; align-items:center; min-height:0; padding:0; border:0; border-radius:0; background:none; color:var(--muted); cursor:pointer; text-align:left; font-size:12px; font-weight:600; line-height:1.15; letter-spacing:.12em; text-transform:uppercase; transition:none; }
+    .section-tab::after { content:none; }
+    .section-tab.active { color:var(--ink); background:none; text-decoration-line:line-through; text-decoration-thickness:1px; text-decoration-skip-ink:none; }
+    .section-tab.active::after { content:none; }
     .section-tab:hover { color:var(--ink); }
-    .work-options { display:flex; align-items:center; gap:13px; margin:-2px 0 16px; padding:0 0 14px; border-bottom:0; }
-    .work-option { position:relative; min-height:0; padding:0; border:0; border-radius:0; background:none; color:var(--muted); cursor:pointer; font-size:9px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; transition:color .18s; }
+    .section-tab.active:hover { color:var(--ink); }
+    .work-options { display:flex; align-items:center; gap:16px; margin:0 0 20px; padding:0; border-bottom:0; }
+    .work-option { position:relative; min-height:0; padding:0; border:0; border-radius:0; background:none; color:var(--muted); cursor:pointer; font-size:10px; font-weight:600; line-height:1.15; letter-spacing:.1em; text-transform:uppercase; transition:none; }
     .work-option::before { content:none; }
-    .work-option.active { color:var(--accent); }
+    .work-option.active { color:var(--ink); background:none; text-decoration-line:line-through; text-decoration-thickness:1px; text-decoration-skip-ink:none; }
     .work-option:hover { color:var(--ink); }
-    .year summary { min-height:42px; font-size:13px; }
-    .year summary b { font-size:11px; }
-    .work-list a { position:relative; padding:5px 0; font-size:12px; }
+    .work-option.active:hover { color:var(--ink); }
+    .year-heading { min-height:42px; font-size:14px; }
+    .year-heading b { font-size:12px; }
+    .work-list a { position:relative; padding:5px 0; font-size:13px; }
     .work-list a::before { content:none; }
-    .cv summary { min-height:54px; font-size:12px; }
-    .cv ul, .contact { font-size:12px; }
+    .cv summary { min-height:54px; font-size:13px; }
+    .cv ul, .contact { font-size:13px; }
     .grid { gap:10px; padding:10px; background:var(--bg); }
     .grid[hidden], .work-options[hidden], .sidebar-panel[hidden], .about-panel[hidden] { display:none; }
     .works { border-top:0; border-bottom:0; }
     .about-options { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin:23px 0 15px; padding:0 0 14px; border-bottom:0; }
-    .about-option { position:relative; padding:0 0 4px; border:0; background:none; color:var(--muted); cursor:pointer; font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; transition:color .18s; }
-    .about-option::after { content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--accent); opacity:0; transform:scaleX(.3); transform-origin:left; transition:opacity .18s,transform .18s; }
-    .about-option.active { color:var(--accent); }
-    .about-option.active::after { opacity:1; transform:scaleX(1); }
+    .about-option { position:relative; padding:0; border:0; border-radius:0; background:none; color:var(--muted); cursor:pointer; font-size:11px; font-weight:600; line-height:1.15; letter-spacing:.1em; text-transform:uppercase; transition:none; }
+    .about-option::after { content:none; }
+    .about-option.active { color:var(--ink); background:none; text-decoration-line:line-through; text-decoration-thickness:1px; text-decoration-skip-ink:none; }
+    .about-option.active::after { content:none; }
     .about-option:hover { color:var(--ink); }
-    .about-panel ul { margin:0 0 17px; padding:0; list-style:none; color:#b7b7bd; font-size:12px; line-height:1.65; }
+    .about-option.active:hover { color:var(--ink); }
+    .about-panel ul { margin:0 0 17px; padding:0; list-style:none; color:#b7b7bd; font-size:13px; line-height:1.65; }
     .about-panel li + li { margin-top:8px; }
     .about-panel b { color:var(--ink); font-weight:500; }
     body.is-about { background:#fff; }
     body.is-about aside { border-right:0; border-bottom:0; box-shadow:none; }
     body.is-about main { background:#fff; }
     .project-card { aspect-ratio:16/9; border-radius:1px; }
-    .project-number { top:12px; left:17px; font:italic 700 clamp(42px,4.3vw,66px)/.8 Optima, 'Optima Bold Italic', 'Optima-BoldItalic', 'Optima LT Std', serif; letter-spacing:0; transform:translateY(-7px); text-shadow:0 1px 12px rgba(0,0,0,.45); }
-    .project-card img.project-badge { position:absolute; top:15px; right:15px; z-index:3; width:clamp(96px,12vw,178px); max-width:34%; height:auto; object-fit:contain; transform:none; filter:none; transition:opacity .2s; box-shadow:0 10px 28px rgba(0,0,0,.22); }
+    .project-number { top:12px; left:17px; font:italic 700 clamp(42px,4.3vw,66px)/.8 Optima, 'Optima Bold Italic', 'Optima-BoldItalic', 'Optima LT Std', serif; letter-spacing:0; transform:none; text-shadow:0 1px 12px rgba(0,0,0,.45); }
+    .project-card img.project-badge { position:absolute; top:15px; right:15px; z-index:3; width:clamp(96px,12vw,178px); max-width:34%; height:auto; object-fit:contain; transform:none; filter:none; transition:none; box-shadow:0 10px 28px rgba(0,0,0,.22); }
     .project-card[data-project="soopan-store"] img.project-badge { top:18px; right:18px; width:clamp(52px,5.4vw,86px); max-width:16.2%; box-shadow:0 7px 18px rgba(0,0,0,.2); }
     .project-card:hover img.project-badge, .project-card:focus img.project-badge { transform:none; filter:none; }
     .card-caption strong { font-family:Pretendard, 'Pretendard Variable', 'Pretendard-SemiBold', Inter, 'Helvetica Neue', Arial, sans-serif; font-weight:600; letter-spacing:0; }
@@ -93,13 +96,16 @@
     .detail-title { margin:0; font-family:Pretendard, 'Pretendard Variable', Inter, sans-serif; font-size:clamp(25px,2.5vw,38px); font-weight:600; line-height:1.15; letter-spacing:0; }
     .detail-category { max-width:260px; margin:16px 0 0; color:#2f2a25; font:400 13px/1.35 Inter, sans-serif; white-space:pre-line; }
     .detail-intro { display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,1.8vw,30px); width:100%; max-width:var(--detail-content); margin:0 auto clamp(76px,9vw,132px); }
-    .detail-copy p { margin:0; color:#2f2a25; font:400 clamp(14px,1.05vw,16px)/1.65 Pretendard, 'Pretendard Variable', Inter, sans-serif; letter-spacing:-.012em; white-space:pre-line; word-break:keep-all; }
+    .detail-copy p { margin:0; color:#2f2a25; font:400 clamp(13px,.98vw,15px)/1.55 Pretendard, 'Pretendard Variable', Inter, sans-serif; letter-spacing:-.012em; white-space:pre-line; word-break:keep-all; }
     .detail-copy-en p { letter-spacing:0; word-break:normal; }
     .detail-gallery, .detail-specs, .next-project { width:100%; max-width:var(--detail-content); }
-    .detail-gallery { grid-template-columns:repeat(6,minmax(0,1fr)); gap:22px; margin:0 auto; }
-    .detail-gallery figure { grid-column:1 / -1; }
+    .detail-gallery { grid-template-columns:repeat(6,minmax(0,1fr)); gap:22px; min-width:0; margin:0 auto; }
+    .detail-gallery figure { grid-column:1 / -1; min-width:0; }
     .detail-gallery figure.detail-half { grid-column:span 3; }
     .detail-gallery figure.detail-third { grid-column:span 2; }
+    .detail-gallery figure.detail-portrait-feature { display:grid; justify-items:center; box-sizing:border-box; padding:clamp(20px,3vw,48px); overflow:hidden; background:#f1eee9; }
+    .detail-gallery figure.detail-portrait-feature img { width:min(100%,820px); max-width:100%; height:auto; }
+    .detail-gallery figure.detail-portrait-feature figcaption { justify-self:start; width:100%; }
     .detail-gallery figure.detail-hero-crop { overflow:hidden; background:#173b2b; }
     .detail-gallery figure.detail-hero-crop img { aspect-ratio:16 / 9; object-fit:cover; object-position:50% 80%; }
     .detail-collection-media { display:grid; gap:clamp(16px,1.8vw,28px); overflow:visible; border:0; background:transparent; }
@@ -112,6 +118,9 @@
     .detail-application-system .detail-collection-media { grid-template-columns:repeat(5,minmax(0,1fr)); }
     .detail-exhibition-grid .detail-collection-media { grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(22px,2.6vw,40px) clamp(16px,2vw,30px); }
     .detail-editorial-grid .detail-collection-media { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .detail-vertical-system .detail-collection-media { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .detail-vertical-system .detail-collection-visual { height:clamp(460px,53vw,760px); padding:clamp(22px,3vw,48px); background:#f1eee9; }
+    .detail-vertical-system .detail-collection-visual img { width:auto; height:100%; max-height:100%; object-fit:contain; }
     .detail-banner-system .detail-collection-visual, .detail-information-system .detail-collection-visual, .detail-application-system .detail-collection-panel:nth-child(4) .detail-collection-visual { box-sizing:border-box; padding:clamp(10px,1.5vw,24px); }
     .detail-wall-system .detail-collection-visual { align-items:start; padding:clamp(18px,2.2vw,34px); background:#f1eee9; }
     .detail-exhibition-grid .detail-collection-visual { background:#f4f1ec; }
@@ -128,11 +137,11 @@
     .scale-item strong { display:block; color:#2f2a25; font:500 12px/1.35 Inter, sans-serif; }
     .scale-item span { display:block; margin-top:4px; color:#746c64; font:400 11px/1.4 Inter, sans-serif; }
     .detail-gallery figure.has-caption { margin-bottom:34px; }
-    .detail-gallery img { cursor:default; }
+    .detail-gallery img { max-width:100%; height:auto; cursor:default; }
     .detail-gallery figcaption { max-width:min(680px,72%); margin-top:14px; font-size:14px; line-height:1.62; white-space:pre-line; }
     .detail-gallery video { width:100%; display:block; background:#000; }
     .detail-gallery video.fixed-poster-ratio { object-fit:contain; background:#000; }
-    @media (max-width:700px) { .detail-gallery figure.detail-half, .detail-gallery figure.detail-third { grid-column:1 / -1; }.detail-horizontal-system .detail-collection-media, .detail-information-system .detail-collection-media, .detail-wall-system .detail-collection-media, .detail-editorial-grid .detail-collection-media { grid-template-columns:1fr; }.detail-application-system .detail-collection-media, .detail-exhibition-grid .detail-collection-media { grid-template-columns:repeat(2,minmax(0,1fr)); }.scale-system-head { grid-template-columns:1fr; gap:12px; }.scale-system-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:700px) { .detail-gallery figure.detail-half, .detail-gallery figure.detail-third { grid-column:1 / -1; }.detail-horizontal-system .detail-collection-media, .detail-information-system .detail-collection-media, .detail-wall-system .detail-collection-media, .detail-editorial-grid .detail-collection-media, .detail-vertical-system .detail-collection-media { grid-template-columns:1fr; }.detail-vertical-system .detail-collection-visual { height:auto; padding:18px; }.detail-vertical-system .detail-collection-visual img { width:100%; height:auto; max-height:none; }.detail-application-system .detail-collection-media, .detail-exhibition-grid .detail-collection-media { grid-template-columns:repeat(2,minmax(0,1fr)); }.scale-system-head { grid-template-columns:1fr; gap:12px; }.scale-system-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     .caption-title { display:block; margin-bottom:7px; color:var(--ink); font-size:13px; font-weight:600; letter-spacing:0; }
     .caption-copy { display:block; color:var(--muted); white-space:normal; word-break:keep-all; overflow-wrap:normal; }
     .detail-specs { margin:clamp(86px,10vw,148px) auto 0; padding-top:18px; border-top:1px solid var(--line); }
@@ -149,7 +158,7 @@
     .detail-actions { display:flex; align-items:center; gap:18px; }
     .project-website { display:flex; justify-content:flex-start; margin:9px 0 0; }
     .project-website:empty { display:none; }
-    .project-website a { display:inline-flex; align-items:center; gap:6px; padding-bottom:2px; border-bottom:1px solid currentColor; color:var(--ink); font-family:Inter, 'Helvetica Neue', Arial, sans-serif; font-size:13px; font-weight:400; line-height:1.35; letter-spacing:0; text-decoration:none; }
+    .project-website a { display:inline-flex; align-items:center; gap:6px; padding-bottom:0; border-bottom:0; color:var(--ink); font-family:Inter, 'Helvetica Neue', Arial, sans-serif; font-size:13px; font-weight:400; line-height:1.35; letter-spacing:0; text-decoration:none; }
     .project-website a:hover { color:var(--accent); }
     .project-website span { font-family:Inter, Arial, sans-serif; font-weight:500; }
     .next-preview { display:block; margin-left:auto; color:var(--ink); text-align:right; text-decoration:none; }
@@ -169,7 +178,7 @@
     .facts dd { color:#2f2a25; }
     .caption-copy,
     .detail-gallery figcaption { color:#746c64; }
-    .card-caption { background:linear-gradient(180deg,rgba(0,0,0,.02) 20%,rgba(0,0,0,.68)); }
+    .card-caption { background:linear-gradient(180deg,rgba(0,0,0,.01) 20%,rgba(0,0,0,.54)); }
     .card-caption strong { color:#fff; }
     .card-caption span { color:#f2eee8; }
     .project-badge { box-shadow:0 12px 30px rgba(45,35,28,.2); }
@@ -178,22 +187,22 @@
       aside { position:fixed; inset:0 0 auto 0; z-index:20; width:100%; height:auto; min-height:0; max-height:100vh; padding:22px 24px 16px; overflow-y:auto; border-right:0; border-bottom:1px solid var(--line); }
       main { margin-left:0; padding-top:var(--mobile-header-height); }
       .grid { gap:8px; padding:8px; }
-      .section-tabs { gap:17px; margin:20px 0 0; padding-bottom:13px; }
-      .section-tab { font-size:10px; }
-      .brand { font-size:29px; }
+      .section-tabs { gap:16px; margin:20px 0 0; padding:0; }
+      .section-tab { font-size:11px; }
+      .brand { font-size:32px; }
       .menu-toggle { top:21px; right:24px; display:flex; flex-direction:column; justify-content:space-between; width:34px; height:26px; padding:4px 0; }
       .menu-toggle span { transform-origin:center; }
       .menu-toggle[aria-expanded="true"] span:first-child { transform:translateY(9px) rotate(45deg); }
       .menu-toggle[aria-expanded="true"] span:last-child { transform:translateY(-9px) rotate(-45deg); }
       .menu-open .sidebar-menu { max-height:calc(100vh - var(--mobile-header-height)); margin-top:21px; padding-bottom:20px; overflow-y:auto; }
-      .intro { font-size:13px; }
-      .intro-kicker { font-size:15px; }
+      .intro { font-size:14px; }
+      .intro-kicker { font-size:16px; }
       .detail-view { padding:24px 22px 50px; }
       .detail-view > .back { max-width:100%; }
       .detail-header { margin:46px 0 46px; }
       .detail-title { font-size:clamp(26px,8vw,42px); }
       .detail-intro { grid-template-columns:1fr; gap:42px; margin-bottom:72px; }
-      .detail-copy p { font-size:14px; }
+      .detail-copy p { font-size:13px; line-height:1.55; }
       .facts dt,.facts dd { font-size:12px; }
       .detail-gallery figcaption { max-width:100%; }
       .next-project { align-items:center; gap:18px; }
@@ -251,22 +260,48 @@
         archiveCategory:'Retail / ISP Design',
         client:'STARFIELD ANSEONG',
         cover:'images/little-art-museum-leaflet-mockup-2026.png',
-        description:'스타필드 안성 ‘작은미술관’의 연속 전시를 위한 그래픽 운영 시스템입니다. 매월 달라지는 작가와 작품을 하나의 프로그램으로 인식할 수 있도록 로고, 타이포그래피와 여백 규칙은 고정하고 작품, 작가와 일정 정보는 유연하게 교체했습니다. 이 시스템을 벽면 그래픽, 점포별 메인 카피와 2단 리플릿에 일관되게 적용했습니다.',
+        description:'스타필드 안성 ‘작은미술관’의 연속 전시를 위한 그래픽 운영 시스템입니다. 매월 달라지는 작가와 작품을 시리즈 프로그램으로 인식할 수 있도록 시스템화하며 벽면 그래픽(전관시트), 2단 리플릿으로 전개하였습니다.',
         contribution:'100%',
         role:'Graphic System, Wall Graphic, Editorial Design',
         images:[
           ['images/little-art-museum-leaflet-mockup-2026.png',''],
-          [[['images/little-art-museum-leaflet-lee-byungchae-2024-01.jpg','2024 · Lee Byung Chae'],['images/little-art-museum-leaflet-choi-jinwook-01.jpg','2024 · Choi Jin Wook'],['images/little-art-museum-leaflet-kim-taemin-01.jpg','2025 · Kim Taemin'],['images/little-art-museum-leaflet-bitdam-01.jpg','2025 · Bitdam'],['images/little-art-museum-leaflet-ha-youngjo-01.jpg','2025 · Ha Young Jo'],['images/little-art-museum-leaflet-lee-seungeun-01.jpg','2026 · Lee Seung Eun']],'Exhibition program system\n2024–2026 전시에 동일한 로고 위치와 정보 위계를 적용했습니다.','','exhibition-grid'],
-          [[['images/little-art-museum-wall-kim-taemin-01.jpg','Basic template'],['images/little-art-museum-wall-prism-01.jpg','Special graphic']],'Wall graphic system\n정기 전시는 기본 템플릿으로 운영하고, 안성 아트 프리즘만 별도의 그래픽 언어로 확장했습니다.','','wall-system'],
-          ['images/little-art-museum-store-copy-system.png','Store-specific copy system\n안성·하남·고양·수원점의 공간 조건에 맞춰 메인 카피와 세로 간격을 조정했습니다.'],
-          [[['images/little-art-museum-leaflet-lee-byungchae-2024-01.jpg','Cover & artist profile'],['images/little-art-museum-leaflet-lee-byungchae-2024-02.jpg','Works & exhibition note']],'Editorial system\n2단 리플릿의 표지와 내지에 동일한 정보 구조를 적용했습니다.','','editorial-grid']
+          [[['images/little-art-museum-leaflet-lee-byungchae-2024-01.jpg',''],['images/little-art-museum-leaflet-choi-jinwook-01.jpg',''],['images/little-art-museum-leaflet-kim-taemin-01.jpg',''],['images/little-art-museum-leaflet-bitdam-01.jpg',''],['images/little-art-museum-leaflet-ha-youngjo-01.jpg',''],['images/little-art-museum-leaflet-lee-seungeun-01.jpg','']],'','','exhibition-grid'],
+          [[['images/little-art-museum-wall-kim-taemin-01.jpg',''],['images/little-art-museum-wall-prism-01.jpg','']],'','','wall-system'],
+          ['images/little-art-museum-store-copy-anseong.png','','','portrait-feature'],
+          [[['images/little-art-museum-leaflet-lee-byungchae-2024-01.jpg',''],['images/little-art-museum-leaflet-lee-byungchae-2024-02.jpg','']],'','','editorial-grid']
         ]
       },
-      {slug:'village-floor-guide-signage',year:2026,date:'March, 2026',title:'VILLAGE Floor Guide Signage',category:'ISP Design / Signage',archiveCategory:'Retail / ISP Design',client:'STARFIELD VILLAGE UNJEONG',cover:'images/village-floor-guide-signage-cover.jpg',description:'빌리지 운정 상업시설의 층별 안내를 위한 사이니지 와이드칼라입니다. 각 층의 매장 구획, 동선, 편의시설 정보를 정리하고 안내 도면을 제작했습니다. 고객이 현재 위치와 목적지를 쉽게 파악할 수 있도록 현장 적용성과 시인성을 높였습니다.',contribution:'100%',images:[['images/village-floor-guide-map.jpg',''],['images/village-floor-guide-signage-cover.jpg','']]},
+      // Hidden archive: remove hidden:true to restore this project unchanged.
+      {slug:'village-floor-guide-signage',hidden:true,year:2026,date:'March, 2026',title:'VILLAGE Floor Guide Signage',category:'ISP Design / Signage',archiveCategory:'Retail / ISP Design',client:'STARFIELD VILLAGE UNJEONG',cover:'images/village-floor-guide-signage-cover.jpg',description:'빌리지 운정 상업시설의 층별 안내를 위한 사이니지 와이드칼라입니다. 각 층의 매장 구획, 동선, 편의시설 정보를 정리하고 안내 도면을 제작했습니다. 고객이 현재 위치와 목적지를 쉽게 파악할 수 있도록 현장 적용성과 시인성을 높였습니다.',contribution:'100%',images:[['images/village-floor-guide-map.jpg',''],['images/village-floor-guide-signage-cover.jpg','']]},
       {slug:'starfield-2025-winter-isp',year:2025,date:'December, 2025',title:'STARFIELD 2025 Winter ISP',category:'ISP Design / Video',archiveCategory:'Retail / ISP Design',client:'STARFIELD',cover:'images/starfield-2025-winter-isp-01-cover.png',description:'2025년 스타필드 겨울 그래픽 디자인은 크리스마스가 지닌 동심과 따뜻한 겨울의 메시지를 담으려 했습니다. 겨울 속 아이와 눈사람이 나누는 따뜻한 감정의 교감을 통해, 추운 계절 속에서도 작은 도움과 나눔의 행동이 큰 기쁨으로 이어질 수 있음을 전하는 캠페인형 스토리를 AI 기술을 활용한 영상 콘텐츠로 구성하였습니다.',contribution:'Team Project · 70%',role:'ISP, 기획, 그래픽디자인, 영상 콘텐츠',images:[['videos/starfield-2025-winter-isp-motion.mp4',''],['images/starfield-2025-winter-isp-02-overview.jpg',''],['images/starfield-2025-winter-isp-03-exterior.png',''],['images/starfield-2025-winter-isp-04-column.png',''],['images/starfield-2025-winter-isp-05-belt.png',''],['images/starfield-2025-winter-isp-06-kiosk.png',''],['images/starfield-2025-winter-isp-07-door.png',''],['images/starfield-2025-winter-isp-08-window.png','']]},
       {slug:'trinity-hall-history-wall',year:2025,date:'August, 2025',title:'TRINITY HALL 100th History Wall',category:'Retail / ISP Design',archiveCategory:'Retail / ISP Design',client:'SHINSEGAE',cover:'images/trinity-hall-history-wall-cover.jpg',description:'신세계 남산 트리니티홀의 공연 100회를 기념하기 위해 제작한 히스토리월 및 포토월 디자인 프로젝트입니다. 트리니티홀의 문화적 가치와 공연의 축적된 시간을 시각적으로 경험할 수 있도록 디자인했습니다.',contribution:'100%',images:[['images/trinity-hall-history-wall.jpg',''],['images/trinity-hall-photo-wall-02.png',''],['images/trinity-hall-installed-view.jpg','']]},
       {
+        slug:'starfield-2025-summer-isp',
+        year:2025,
+        date:'Summer, 2025',
+        title:'STARFIELD 2025 Summer ISP',
+        category:'ISP Design / Artist Collaboration',
+        archiveCategory:'Retail / ISP Design',
+        client:'STARFIELD',
+        cover:'images/starfield-2025-summer-01-hero.jpg',
+        description:'‘Starfield Fun Adventure’를 콘셉트로 스타필드 2025 여름 시즌그래픽 ISP 디자인을 전개하였습니다. 해당 콘셉트와 부합하는 작가를 서치하고 제작된 콜라보 아트워크를 다양한 온오프라인 매체로 확장하였습니다.',
+        contribution:'Team Project',
+        role:'Art Direction, Artist Collaboration, ISP Design',
+        images:[
+          ['images/starfield-2025-summer-01-hero.jpg',''],
+          ['images/starfield-2025-summer-02-key-visual.jpg','Key visual\n협업 아트워크의 역동적인 장면을 세로형 키비주얼에 맞춰 재구성했습니다.','','portrait-feature'],
+          ['images/starfield-2025-summer-04-exterior.jpg',''],
+          ['images/starfield-2025-summer-05-freestanding.jpg',''],
+          ['images/starfield-2025-summer-06-overhead.jpg',''],
+          ['images/starfield-2025-summer-07-glass.jpg',''],
+          ['images/starfield-2025-summer-08-entrance.jpg',''],
+          ['images/starfield-2025-summer-09-pop-up.jpg','']
+        ]
+      },
+      {
+        // Hidden archive: remove hidden:true to restore this project unchanged.
         slug:'starfield-anseong-byeoriya-festival',
+        hidden:true,
         year:2025,
         date:'April, 2025',
         title:'Byeoriya Festival',
@@ -298,9 +333,52 @@
       },
       {slug:'salon',year:2024,date:'December, 2024',title:'SHINSEGAE SALON',category:'UIUX / Mobile Service',archiveCategory:'UIUX / Web',cover:'images/shinsegae-salon-01.jpg',...actual.salon},
       {slug:'fwd-website',year:2024,date:'August, 2024',title:'F.W.D Website',category:'UIUX / Web',archiveCategory:'UIUX / Web',client:'학교법인 꿈이있는미래(EDUCATION FOUNDATION FUTURE WITH DREAMS)',cover:'images/fwd-website-04.png',description:'학교법인 꿈이있는미래(구 영훈학원)의 초·중·고 개별 웹사이트를 제작하고, 하나의 법인 웹사이트로 통합 구축한 UX·UI 프로젝트입니다. 법인의 정체성과 오랜 역사, 명문 사학의 품격을 시각적으로 담아내고, 통합된 콘텐츠 구조와 UI 그리드 시스템을 통해 일관된 브랜드 경험을 제공했습니다.',contribution:'90%',role:'UIUX / 상세페이지 / 영상 촬영기획, 편집',website:'https://www.younghoon.ms.kr/younghoon/index.do',websiteLabel:'Visit Website',images:[['images/fwd-website-04.png',''],['images/fwd-website-01.png',''],['images/fwd-website-02.png',''],['images/fwd-website-03.jpg',''],['images/fwd-website-05.jpg',''],['images/fwd-website-06.jpg',''],['images/fwd-website-07.jpg','']]},
+      {
+        slug:'starfield-2024-summer-isp',
+        year:2024,
+        date:'Summer, 2024',
+        title:'STARFIELD 2024 Summer ISP',
+        category:'ISP Design / Artist Collaboration',
+        archiveCategory:'Retail / ISP Design',
+        client:'STARFIELD',
+        cover:'images/starfield-2024-summer-01-hero.jpg',
+        description:'스타필드 2024 여름 시즌을 위해 일러스트레이터와 콜라보하여 진행한 ISP 디자인입니다. 스타필드의 공간과 매체 환경에 맞춰 작가 리서치 이후 ‘Summer Vibes’ 키비주얼 디렉팅 및 스타필드 내부의 다양한 사이즈의 매체로 확장하여 ISP 디자인을 전개하였습니다.',
+        contribution:'Team Project',
+        role:'Art Direction, Artist Collaboration, ISP Design',
+        images:[
+          ['images/starfield-2024-summer-01-hero.jpg',''],
+          ['images/starfield-2024-summer-02-key-visual.jpg','Key visual\n작가의 회화적인 바다와 구름 이미지를 세로형 키비주얼과 메시지 구조로 확장했습니다.','','portrait-feature'],
+          ['images/starfield-2024-summer-04-exterior.jpg',''],
+          ['images/starfield-2024-summer-05-wall.jpg',''],
+          ['images/starfield-2024-summer-06-freestanding.jpg',''],
+          ['images/starfield-2024-summer-07-elevator.jpg',''],
+          ['images/starfield-2024-summer-08-glass.jpg','']
+        ]
+      },
       {slug:'fall-season-graphics',year:2024,date:'June, 2024',title:'World Animal Day Illustration',category:'Graphic',archiveCategory:'Campaign / Graphic Design',cover:'images/fall-season-graphics.jpg',description:'세계동물의 날을 기념하여 제작한 가을 일러스트 포스터입니다. 멸종위기 동물 중 여우를 주제로 그래픽을 제작하였습니다.',contribution:'Personal Project · 100%',role:'Graphic Design',images:[['images/fall-season-graphics.jpg','']]},
       {slug:'gift',year:2024,title:'SHINSEGAE Gift Book Design',category:'Book Design / Photo',archiveCategory:'Editorial / Packaging',cover:'images/shinsegae-gift-book-01.jpg',...actual.gift},
       {slug:'members-bar-pickup-screen',year:2024,date:'June, 2024',title:'Members Bar Pickup Screen',category:'UIUX',archiveCategory:'UIUX / Web',cover:'images/members-bar-display-landscape.jpg',description:'신세계 멤버스바의 스마트오더 고객을 위한 픽업 안내 스크린 UI/UX를 제작했습니다. 주문 상태, 고객명, 주문번호를 중심으로 정보 구조를 정리하고, 세로형·가로형 디스플레이 환경에 맞춰 화면 규격과 애니메이션 플로우를 설계했습니다. 브랜드의 무드를 유지하면서도 고객이 자신의 주문 상태를 빠르게 확인할 수 있도록 가독성과 사용성을 중심으로 구성했습니다.',contribution:'100%',role:'UI/UX Design',client:'SHINSEGAE',images:[['images/members-bar-flow-vertical.png',''],['images/members-bar-flow-horizontal.png',''],['images/members-bar-display-portrait.jpg',''],['images/members-bar-display-landscape.jpg',''],['images/members-bar-counter.jpg','']]},
+      {
+        slug:'trinity-hall-matinee-concert-program-book',
+        year:2024,
+        date:'2024',
+        title:'Matinee Concert Program Book',
+        category:'Editorial / Book Design',
+        archiveCategory:'Editorial / Packaging',
+        client:'SHINSEGAE NAMSAN',
+        cover:'images/trinity-matinee-01-hero.jpg',
+        description:'신세계남산의 브랜드 아이덴티티 연장선으로, 회차마다 달라지는 출연진과 프로그램 정보를 일관된 시리즈로 제작될 수 있도록 가이드를 제작하였습니다. 표지 디자인과 이미지를 중심으로 내지의 정보 위계, 프로필, 프로그램 노트와 관련 인쇄물까지 확장하였습니다.',
+        contribution:'Team Project',
+        role:'Cover Design, Editorial System, Art Direction',
+        images:[
+          ['images/trinity-matinee-01-hero.jpg',''],
+          ['images/trinity-matinee-02-cover-system.jpg',''],
+          ['images/trinity-matinee-03-profile-spread.jpg',''],
+          ['images/trinity-matinee-04-venue-spread.jpg',''],
+          [[['images/trinity-matinee-05-orchestra-spread.jpg',''],['images/trinity-matinee-06-program-note.jpg','']],'','','editorial-grid'],
+          ['images/trinity-matinee-07-series-applications.jpg','']
+        ]
+      },
       {slug:'shinsegae-festival-program-book-design',year:2024,date:'April, 2024',title:'SHINSEGAE Festival Program Book Design',category:'Book Design',archiveCategory:'Editorial / Packaging',client:'SHINSEGAE',cover:'images/shinsegae-festival-program-book-05.jpg',description:'신세계백화점 VIP 고객을 위해 남산 트리니티홀에서 개최된 신세계 페스티벌 공연 안내 프로그램북입니다. 트리니티홀 공연 브랜딩과 프리미엄 고객 경험에 맞춰 시각적 아이덴티티를 적용했으며, 표지 및 내지에 공연별 주요 내용과 일정이 명확하게 전달되도록 정보 구조와 레이아웃을 구성했습니다.',contribution:'100%',images:[['images/shinsegae-festival-program-book-01.jpg',''],['images/shinsegae-festival-program-book-02.jpg',''],['images/shinsegae-festival-program-book-03.jpg',''],['images/shinsegae-festival-program-book-04.jpg',''],['images/shinsegae-festival-program-book-05.jpg','']]},
       {slug:'shinsegae-contents-guide',year:2024,date:'April, 2024',title:'SHINSEGAE Contents Guide',category:'Branding / Manual',archiveCategory:'Branding',client:'SHINSEGAE',cover:'images/shinsegae-contents-guide-phone.png',description:'신세계그룹 공식 인스타그램 계정의 콘텐츠 제작 가이드를 정립했습니다. 이를 통해 백화점 이벤트, 브랜드 프로모션 등 다양한 콘텐츠를 텍스트, 이미지, 영상(릴스) 형식으로 제공하며 일관된 브랜드 아이덴티티를 유지할 수 있도록 그리드 시스템을 수립하였습니다.',contribution:'100%',images:[['images/shinsegae-contents-guide-card.png',''],['images/shinsegae-contents-guide-motion.gif',''],['images/shinsegae-contents-guide-manual.png',''],['images/shinsegae-contents-guide-phone.png','']]},
       {slug:'starfield-notice-signage-design-guideline',year:2023,date:'December, 2023',title:'STARFIELD Notice Signage Design Guideline',category:'ISP Design / Manual',archiveCategory:'Retail / ISP Design',client:'STARFIELD',cover:'images/starfield-notice-signage-guideline-01.jpg',description:'스타필드 전점의 고객 안내 고지물 운영을 표준화하기 위해 제작한 디자인 가이드라인입니다. 카피, 서체, 컬러, 픽토그램, 사이즈, 레이아웃 기준을 체계적으로 정리하고, 집기 및 부착 환경별 적용 예시를 제시해 점포별 안내물의 일관된 톤앤매너와 정보 전달력을 강화했습니다.',contribution:'Team Project · 50%',role:'가이드라인, 픽토그램',images:[['images/starfield-notice-signage-guideline-01.jpg',''],['images/starfield-notice-signage-guideline-02.jpg',''],['images/starfield-notice-signage-guideline-03.jpg',''],['images/starfield-notice-signage-guideline-04.jpg','']]},
@@ -308,20 +386,23 @@
       {slug:'centerfield-floor-tenant-guide-media-facade',year:2023,date:'August, 2023',title:'CENTERFIELD Floor & Tenant Guide Media Facade',category:'Video / Motion Graphic',archiveCategory:'Motion / Visual Contents',client:'CENTERFIELD',cover:'images/centerfield-floor-tenant-guide-media-facade-cover.jpg',videoAspect:'16/9',description:'센터필드의 층별 주요 테넌트와 공간 성격을 소개하기 위해 B2부터 2F까지의 정보를 카테고리별로 정리하고, 감도 높은 이미지와 절제된 타이포그래피를 활용해 프리미엄 복합공간의 분위기를 시각적으로 전달했습니다. 대형 미디어파사드 매체 특성을 고려해 멀리서도 정보가 명확하게 인지될 수 있도록 층수, 카테고리, 설명 문구의 위계를 단순화했으며, 시각적 몰입감과 안내 기능이 균형을 이루는 영상 구성을 목표로 했습니다.',contribution:'100%',images:[['videos/centerfield-media-facade-main-east.mp4','','images/centerfield-floor-tenant-guide-media-facade-cover.jpg']]},
       {slug:'eyev',year:2023,title:'EYEV',category:'Branding / Packaging',archiveCategory:'Branding',cover:'images/eyev-10-product-shot.jpeg',badge:'images/eyev-adp-winner.png',...actual.eyev},
       {slug:'hermod',year:2021,date:'December, 2021',title:'HERMOD',category:'Branding',archiveCategory:'Branding',cover:'images/hermod-01.png',videoAspect:'3/2',description:'헤르모드는 1955년 독일 카트 레이싱 문화에서 출발한 가상의 모터스포츠 안전장비 브랜드입니다. 드라이버의 안전성과 퍼포먼스를 지원하는 레이싱 헬멧 및 보호 장비를 중심으로, 클래식 레이싱 헤리티지와 현대적인 기술 이미지를 결합한 브랜드 아이덴티티를 구축했습니다. 또한 자동차 경주 대회를 공인하는 브랜드 설정을 통해 전문성과 권위를 갖춘 모터스포츠 브랜드의 세계관을 표현했습니다.',contribution:'Personal Project · 100%',role:'Brand Identity',images:[['videos/hermod-brand-motion.mp4','','images/hermod-13.jpg'],['images/hermod-02.jpg','Simbol Logo\n헤르모드의 로고는 천지를 가로지르며 용맹한 정신을 상징하는 노르드신화의 신, 헤르모드의 투구형상에 기반하여 제작되었으며 모터스포츠문화의 불멸정신을 상징합니다.'],['images/hermod-03.jpg','Manual Book\n브랜드의 아이덴티티 그래픽을 메뉴얼화한 메뉴얼북입니다. 브랜드에 대한 기본적인그래픽 시스템과, 어플리케이션 폼, 사인시스템을 정립하고 규격화하였습니다.'],['images/hermod-04.jpg','Brand Book\n브랜드 역사와 스토리가 담긴 브랜드북입니다. 가상의 브랜드이지만 실제 역사와 문화를 기반으로 브랜드 스토리를 전개하였으며, 스토리에 대한 설득력을 안정적으로 뒷받침 할 수 있도록 그에 적합한 이미지를 편집하여 제작하였습니다.'],['images/hermod-05.jpg',''],['images/hermod-06.jpg',''],['images/hermod-07.jpg',''],['images/hermod-08.jpg',''],['images/hermod-09.jpg',''],['images/hermod-10.jpg',''],['images/hermod-11.jpg',''],['images/hermod-12.jpg',''],['images/hermod-01.png','']]},
-    ];
+    ].filter(project=>!project.hidden);
     const descriptionsEn = {
       'hotel-yoon':'HOTEL YO:ON was created to help guests recover from the fatigue of urban life in their own way. While conventional city hotels prioritize location and efficiency, HOTEL YO:ON focuses on shifting each guest’s physical and emotional state. Its urban-wellness experience combines the practicality of a city hotel with the restorative sensibility of a wellness brand, extending one coherent identity across the service catalog and reservation website.',
-      'starfield-little-art-museum-exhibition-system':'A graphic system for the ongoing Little Art Museum exhibition program at Starfield Anseong. Fixed rules for the logo, typography and spacing create continuity, while the artworks, artist profiles and schedules change with each exhibition. The system extends consistently across wall graphics, location-specific copy and two-fold leaflets.',
+      'starfield-little-art-museum-exhibition-system':'A graphic operating system for Starfield Anseong’s ongoing Little Art Museum exhibitions. It organizes the changing artists and artworks as a cohesive series and extends across wall graphics (full-wall sheets) and two-fold leaflets.',
       'starfield-anseong-byeoriya-festival':'An integrated campaign for Byeoriya Festival at Starfield Anseong. One visual system was translated into more than twenty applications, spanning large-format banners, information graphics, floor and fixture graphics, and digital media.\nRather than scaling a single layout proportionally, each application was rebuilt for its format, exact dimensions, viewing distance and installation context. Cropping, information hierarchy and density were adjusted at every scale while preserving one cohesive festival identity.',
       'village-floor-guide-signage':'This signage project presents floor-by-floor information for the commercial facilities at Starfield Village Unjeong. Tenant zones, circulation routes, and amenities were organized into clear guide maps. The system was designed for strong visibility and practical on-site use, helping visitors quickly understand their current location and destination.',
       'starfield-2025-winter-isp':'The 2025 Starfield Winter ISP project explores the childlike wonder of Christmas and the warmth of the season. Through the emotional exchange between a child and a snowman, it shows how small acts of help and generosity can grow into meaningful joy, even in the coldest season. The campaign story was developed as AI-assisted motion content and expanded into a seasonal graphic system throughout the space.',
       'trinity-hall-history-wall':'This history wall and photo wall commemorate the 100th performance at Shinsegae Namsan Trinity Hall. The design creates a clear visual narrative through which visitors can experience the venue’s cultural value and the history accumulated across its performances.',
+      'starfield-2025-summer-isp':'Under the concept “Starfield Fun Adventure,” I developed the ISP design for Starfield’s 2025 summer season. I researched an artist whose work aligned with the concept and expanded the resulting collaborative artwork across a range of online and offline media.',
       'salon':'Shinsegae Salon is a premium academy mobile service for Shinsegae Department Store’s VIP customers. The project improves a complex information architecture and limited readability while simplifying user flows so customers can quickly find what they need. Centered on accessibility and legibility, the UX/UI enables its core middle-aged and older audience to browse and register for classes easily and intuitively on mobile.',
       'fwd-website':'This UX/UI project unified the separate elementary, middle, and high school websites of Future With Dreams Education Foundation, formerly Younghoon Academy, into one institutional website. The design expresses the foundation’s identity, long history, and academic prestige, while a unified content structure and UI grid system provide a consistent brand experience across the platform.',
+      'starfield-2024-summer-isp':'For Starfield’s 2024 summer season, I collaborated with an illustrator to develop an ISP design. Following artist research, I directed the “Summer Vibes” key visual for Starfield’s spatial and media environments and expanded it across a range of formats throughout the venue.',
       'fall-season-graphics':'This autumn illustration poster was created for World Animal Day. The fox, one of the world’s endangered species, was chosen as the central subject of the graphic.',
       'gift':'I contributed to Shinsegae Department Store’s holiday gift catalog, focusing on conveying the brand’s heritage and premium character. I maintained consistency across typography and layouts while coordinating the photography concept and art direction to express the freshness of the products and the care behind each gift.',
       'members-bar-pickup-screen':'I designed a pickup information screen for customers using Shinsegae Members Bar’s smart-order service. The interface prioritizes order status, customer name, and order number, with specifications and animation flows tailored to both portrait and landscape displays. Readability and speed of recognition were central to the system while preserving the brand’s refined visual tone.',
       'shinsegae-festival-program-book-design':'This program book was created for the Shinsegae Festival held at Namsan Trinity Hall for Shinsegae Department Store’s VIP customers. The visual identity reflects both the venue’s performance branding and a premium guest experience, while the cover and interior layouts organize key program information and schedules with clarity.',
+      'trinity-hall-matinee-concert-program-book':'Developed as an extension of Shinsegae Namsan’s brand identity, this guideline enables changing performers and program information to be presented as a consistent concert series. Beginning with the cover design and key imagery, the system extends to the interior information hierarchy, artist profiles, program notes and related printed materials.',
       'shinsegae-contents-guide':'I established a content design guide for Shinsegae Group’s official Instagram account. The guide defines a consistent grid system across text, image, and video or Reels formats, enabling diverse content—from department store events to brand promotions—to maintain a coherent brand identity.',
       'starfield-notice-signage-design-guideline':'This design guideline standardizes customer-facing notices across all Starfield locations. It systematizes copy, typography, color, pictograms, formats, and layout rules, and provides examples for different fixtures and installation environments to strengthen consistency and clarity across stores.',
       'soopan-store':'SOOPAN Store is a street-branding project for the commercial district around Sunae Station in Seongnam. The project gives the area a memorable identity while improving vitality, walkability, and comfort through a coordinated system of street graphics and information facilities.',
@@ -340,11 +421,11 @@
     menuToggle.addEventListener('click',()=>{const opening=!sidebar.classList.contains('menu-open');sidebar.classList.toggle('menu-open',opening);menuToggle.setAttribute('aria-expanded',String(opening));menuToggle.setAttribute('aria-label',opening?'메뉴 닫기':'메뉴 열기');});
     const formatNumber=number=>String(number).padStart(2,'0');
     function placeholder(project,variant='') { return `<div class="placeholder ${variant}" style="--tone:${project.tone}" data-mark="${project.mark}" aria-label="${project.title} 임시 프로젝트 이미지"></div>`; }
-    function accordion(label,items,open=false) { return `<details class="year" ${open?'open':''}><summary><span>${label}</span><b>${String(items.length).padStart(2,'0')}</b></summary><ul class="work-list">${items.map(p=>`<li><a href="#${p.slug}" data-project="${p.slug}">${p.title}</a></li>`).join('')}</ul></details>`; }
+    function archiveSection(label,items) { return `<section class="year"><div class="year-heading"><span>${label}</span><b>${String(items.length).padStart(2,'0')}</b></div><ul class="work-list">${items.map(p=>`<li><a href="#${p.slug}" data-project="${p.slug}">${p.title}</a></li>`).join('')}</ul></section>`; }
     function renderArchive() {
       const years=[...new Set(projects.map(project=>project.year))].sort((a,b)=>b-a);
-      if(archiveView==='recent') { nav.setAttribute('aria-label','연도별 프로젝트 목록'); nav.innerHTML=years.map((year,index)=>accordion(String(year),projects.filter(p=>p.year===year),index===0)).join(''); }
-      else { nav.setAttribute('aria-label','카테고리별 프로젝트 목록'); nav.innerHTML=archiveCategories.map((category,index)=>accordion(category,projects.filter(p=>p.archiveCategory===category),index===0)).join(''); }
+      if(archiveView==='recent') { nav.setAttribute('aria-label','연도별 프로젝트 목록'); nav.innerHTML=years.map(year=>archiveSection(String(year),projects.filter(p=>p.year===year))).join(''); }
+      else { nav.setAttribute('aria-label','카테고리별 프로젝트 목록'); nav.innerHTML=archiveCategories.map(category=>archiveSection(category,projects.filter(p=>p.archiveCategory===category))).join(''); }
       archiveButtons.forEach(button=>{const active=button.dataset.archiveView===archiveView;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active));});
       grid.innerHTML=projects.map((p,index)=>`<a class="project-card" href="#${p.slug}" data-project="${p.slug}"><span class="project-number">${formatNumber(projects.length-index)}</span>${p.cover?`<img src="${p.cover}" alt="${p.title}"${p.coverPosition?` style="object-position:${escapeHTML(p.coverPosition)}"`:''}>`:placeholder(p,`variant-${index%4}`)}${p.badge?`<img class="project-badge" src="${p.badge}" alt="${p.awards || `${p.title} award`}">`:''}<span class="card-caption"><strong>${p.title}</strong><span>${p.category} · ${p.year}</span></span></a>`).join('');
     }
@@ -357,9 +438,9 @@
     const videoType=src=>/\.webm$/i.test(src)?'video/webm':/\.mov$/i.test(src)?'video/quicktime':'video/mp4';
     function mediaHTML(project,src,caption,poster) { const safeSrc=escapeHTML(src); const videoPoster=poster || project.cover; if(isVideo(src)) return `<video class="${poster?'fixed-poster-ratio':''}"${poster?` style="aspect-ratio:${escapeHTML(project.videoAspect || '3/2')}"`:''} controls playsinline preload="metadata"${videoPoster?` poster="${escapeHTML(videoPoster)}"`:''}><source src="${safeSrc}" type="${videoType(src)}">영상 재생을 지원하지 않는 브라우저입니다.</video>`; return `<img src="${safeSrc}" alt="${escapeHTML(caption || project.title)}">`; }
     function scaleSystemFor(project) { if(!project.scaleSystem) return ''; const items=project.scaleSystem.map(([label,value,shape])=>`<div class="scale-item"><div class="scale-stage"><i class="scale-shape ${escapeHTML(shape)}" aria-hidden="true"></i></div><strong>${escapeHTML(label)}</strong><span>${escapeHTML(value)}</span></div>`).join(''); return `<section class="detail-scale-system" aria-labelledby="scale-system-title"><div class="scale-system-head"><h3 id="scale-system-title">Format Spectrum</h3><p>하나의 키비주얼을 285×375mm 폼보드부터 최대 8m 현수막과 디지털 미디어까지 확장했습니다. 제작물의 실제 비율과 시청 환경에 맞춰 장면의 크롭, 정보 밀도와 타이포그래피 위치를 각각 다시 설계했습니다.</p></div><div class="scale-system-grid">${items}</div></section>`; }
-    function collectionFor(project,src,caption,layout) { const panels=src.map((item,index)=>{const [itemSrc,label]=Array.isArray(item)?item:[item,''];return `<span class="detail-collection-panel"><span class="detail-collection-visual">${mediaHTML(project,itemSrc,`${caption || project.title} ${index+1}`,'')}</span>${label?`<span class="detail-collection-label">${escapeHTML(label)}</span>`:''}</span>`;}).join('');return `<figure class="has-caption detail-collection detail-${escapeHTML(layout)}"><div class="detail-collection-media">${panels}</div><figcaption>${captionHTML(caption)}</figcaption></figure>`; }
+function collectionFor(project,src,caption,layout) { const panels=src.map((item,index)=>{const [itemSrc,label]=Array.isArray(item)?item:[item,''];return `<span class="detail-collection-panel"><span class="detail-collection-visual">${mediaHTML(project,itemSrc,`${caption || project.title} ${index+1}`,'')}</span>${label?`<span class="detail-collection-label">${escapeHTML(label)}</span>`:''}</span>`;}).join('');const classes=[caption?'has-caption':'','detail-collection',`detail-${escapeHTML(layout)}`].filter(Boolean).join(' ');return `<figure class="${classes}"><div class="detail-collection-media">${panels}</div>${caption?`<figcaption>${captionHTML(caption)}</figcaption>`:''}</figure>`; }
     function mergedSectionCaption(section,caption) { const [sectionTitle,...sectionBody]=String(section).split('\n'); const [captionTitle,...captionBody]=String(caption || '').split('\n'); const body=[...sectionBody,captionTitle,...captionBody].filter(Boolean).join(' '); return [sectionTitle,body].filter(Boolean).join('\n'); }
-    function galleryFor(project) { if(project.images) { let sectionCaption=''; return project.images.map(([src,caption,poster,layout])=>{if(layout==='section-heading'){sectionCaption=caption;return '';}const resolvedCaption=sectionCaption?mergedSectionCaption(sectionCaption,caption):caption;sectionCaption='';if(layout==='scale-system') return scaleSystemFor(project);if(['banner-system','horizontal-system','information-system','application-system','exhibition-grid','editorial-grid','wall-system'].includes(layout)&&Array.isArray(src)) return collectionFor(project,src,resolvedCaption,layout);const layoutClass={half:'detail-half',third:'detail-third','hero-crop':'detail-hero-crop'}[layout] || '';const classes=[resolvedCaption?'has-caption':'',layoutClass].filter(Boolean).join(' ');return `<figure${classes?` class="${classes}"`:''}>${mediaHTML(project,src,resolvedCaption,poster)}${resolvedCaption?`<figcaption>${captionHTML(resolvedCaption)}</figcaption>`:''}</figure>`;}).join(''); } return `<figure class="has-caption"><div class="detail-placeholder">${placeholder(project,'variant-1')}</div><figcaption>Archive Placeholder · 이미지와 상세 설명을 추가하면 정식 프로젝트로 전환됩니다.</figcaption></figure>`; }
+    function galleryFor(project) { if(project.images) { let sectionCaption=''; return project.images.map(([src,caption,poster,layout])=>{if(layout==='section-heading'){sectionCaption=caption;return '';}const resolvedCaption=sectionCaption?mergedSectionCaption(sectionCaption,caption):caption;sectionCaption='';if(layout==='scale-system') return scaleSystemFor(project);if(['banner-system','horizontal-system','information-system','application-system','exhibition-grid','editorial-grid','wall-system','vertical-system'].includes(layout)&&Array.isArray(src)) return collectionFor(project,src,resolvedCaption,layout);const layoutClass={half:'detail-half',third:'detail-third','hero-crop':'detail-hero-crop','portrait-feature':'detail-portrait-feature'}[layout] || '';const classes=[resolvedCaption?'has-caption':'',layoutClass].filter(Boolean).join(' ');return `<figure${classes?` class="${classes}"`:''}>${mediaHTML(project,src,resolvedCaption,poster)}${resolvedCaption?`<figcaption>${captionHTML(resolvedCaption)}</figcaption>`:''}</figure>`;}).join(''); } return `<figure class="has-caption"><div class="detail-placeholder">${placeholder(project,'variant-1')}</div><figcaption>Archive Placeholder · 이미지와 상세 설명을 추가하면 정식 프로젝트로 전환됩니다.</figcaption></figure>`; }
     function openProject(slug) { const project=bySlug[slug]; if(!project) return closeProject(false); if(!home.hidden) homeScrollY=window.scrollY || window.pageYOffset || 0; home.hidden=true; detail.hidden=false; document.body.classList.remove('is-about'); document.body.classList.add('is-detail'); document.title=`${project.title} — HONGJU`; document.querySelector('#detail-title').textContent=project.title; document.querySelector('#detail-category').textContent=project.category; document.querySelector('#detail-description-ko').textContent=project.description || '프로젝트 설명을 준비하고 있습니다.'; document.querySelector('#detail-description-en').textContent=descriptionsEn[slug] || 'Project description is being prepared.'; document.querySelector('#detail-specs-title').textContent=project.title; const specs=[['Category',project.category],['Date',project.date || project.year],project.medium?['Medium',project.medium]:null,project.size?['Size',project.size]:null,['Contribution',project.contribution || 'Archive Placeholder'],['Role',project.role || project.category],project.awards?['Awards',project.awards]:null,project.client?['Client',project.client]:null].filter(Boolean); document.querySelector('#detail-facts').innerHTML=specs.map(([label,value])=>`<div><dt>${escapeHTML(label)}</dt><dd>${escapeHTML(value)}</dd></div>`).join(''); document.querySelector('#detail-website').innerHTML=websiteFor(project); document.querySelector('#detail-gallery').innerHTML=galleryFor(project); const next=projects[(project.index)%projects.length]; document.querySelector('#next-project').innerHTML=`<span class="detail-actions"><button class="back" type="button" data-home>Back</button></span><a class="next-preview" href="#${next.slug}" data-project="${next.slug}"><strong>${next.title}<span class="next-arrow">↗</span></strong></a>`; document.querySelectorAll('[data-project]').forEach(link=>link.classList.toggle('active',link.dataset.project===slug)); window.scrollTo({top:0,behavior:'instant'}); }
     function closeProject(update=true) { setMainView(mainView,update); }
     document.addEventListener('click',event=>{const sectionButton=event.target.closest('[data-main-view]');if(sectionButton){event.preventDefault();setMainView(sectionButton.dataset.mainView);if(window.matchMedia('(max-width:860px)').matches) openMobileMenu();return;}const aboutButton=event.target.closest('[data-about-tab]');if(aboutButton){event.preventDefault();setAboutTab(aboutButton.dataset.aboutTab);return;}const archiveButton=event.target.closest('[data-archive-view]');if(archiveButton){archiveView=archiveButton.dataset.archiveView;renderArchive();return;}const projectLink=event.target.closest('[data-project]');if(projectLink){event.preventDefault();closeMobileMenu();const slug=projectLink.dataset.project;if(location.hash.slice(1)===slug)openProject(slug);else location.hash=slug;return;}if(event.target.closest('[data-home]')){event.preventDefault();closeMobileMenu();mainView='works';closeProject();}});
