@@ -219,7 +219,8 @@
     <div class="section-tabs" role="tablist" aria-label="Portfolio sections"><button class="section-tab active" type="button" data-main-view="works" role="tab" aria-selected="true">Works</button><button class="section-tab" type="button" data-main-view="about" role="tab" aria-selected="false">About</button></div>
     <div class="sidebar-menu" id="sidebar-menu">
       <section class="sidebar-panel" data-sidebar-panel="works">
-        <div class="work-options" role="tablist" aria-label="Works 보기 방식"><button class="work-option active" type="button" data-archive-view="recent" role="tab" aria-selected="true">Recent</button><button class="work-option" type="button" data-archive-view="category" role="tab" aria-selected="false">Category</button></div>
+        <!-- Archived 2026-09-30: remove hidden to restore Recent / Category tabs. Styles and category logic are preserved; default view is recent. -->
+        <div class="work-options" hidden role="tablist" aria-label="Works 보기 방식"><button class="work-option active" type="button" data-archive-view="recent" role="tab" aria-selected="true">Recent</button><button class="work-option" type="button" data-archive-view="category" role="tab" aria-selected="false">Category</button></div>
         <nav class="works" id="works-nav" aria-label="연도별 프로젝트 목록"></nav>
       </section>
       <section class="sidebar-panel" data-sidebar-panel="about" hidden>
